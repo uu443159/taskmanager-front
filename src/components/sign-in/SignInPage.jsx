@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Button, Form} from "react-bootstrap";
-import data from "bootstrap/js/src/dom/data";
+import {GeneralContext} from "../../context/GeneralContext";
+import {useNavigate} from "react-router-dom";
 
 export const SignInPage = () => {
 
@@ -8,8 +9,12 @@ export const SignInPage = () => {
     const [ password, setPassword ] = useState("");
     const [ badCredentials, setBadCredentials ] = useState(false);
 
+    const { setToken } = useContext(GeneralContext);
+    const navigate = useNavigate();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
 
         const requestOptions = {
             method: 'POST',
@@ -23,6 +28,8 @@ export const SignInPage = () => {
 
         if (response.ok) {
             const data = await response.json();
+            setToken(data?.token);
+            navigate("/...")
 
         } else {
             setBadCredentials(true);
