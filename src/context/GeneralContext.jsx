@@ -1,3 +1,5 @@
+import React from "react";
+
 // @function  UserContext
 const GeneralContext = React.createContext({ token: '' });
 
