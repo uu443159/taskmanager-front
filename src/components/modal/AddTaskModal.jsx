@@ -7,12 +7,7 @@ export const AddTaskModal = () => {
     const [ title, setTitle ] = useState("");
     const [ description, setDescription ] = useState("");
     const [ badCredentials, setBadCredentials ] = useState(false);
-    const {userName, token} = useContext(GeneralContext);
-
-    const [show, setShow] = useState(true);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const {userName, token, modalVisible, setModalVisible} = useContext(GeneralContext);
 
     const handleSubmit = async (e) => {
 
@@ -35,7 +30,7 @@ export const AddTaskModal = () => {
         const response = await fetch("http://localhost:8080/api/v1/task/save", requestOptions);
 
         if (response.ok) {
-            setShow(false)
+            setModalVisible(false)
 
         } else {
             console.log('error')
@@ -44,8 +39,8 @@ export const AddTaskModal = () => {
 
     return (
         <Modal
-            show={show}
-            onHide={handleClose}
+            show={modalVisible}
+            onHide={() => setModalVisible(false)}
             backdrop="static"
             keyboard={false}
         >
@@ -72,7 +67,7 @@ export const AddTaskModal = () => {
                             onChange={e => setDescription(e.target.value)}/>
                     </Form.Group>
 
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={() => setModalVisible(false)}>
                         Close
                     </Button>
                     <Button variant="primary" type="submit">Add</Button>

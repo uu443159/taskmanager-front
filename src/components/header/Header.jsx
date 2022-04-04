@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 export const Header = () => {
 
-    const { token, setToken } = useContext(GeneralContext);
+    const { token, setToken, setModalVisible } = useContext(GeneralContext);
     const navigate = useNavigate();
 
     const handleSignIn = () => {
@@ -53,7 +53,7 @@ export const Header = () => {
                         style={{maxHeight: '100px'}}
                         navbarScroll
                     >
-                        <Nav.Link href="#add-task">Add task icon</Nav.Link>
+                        <Nav.Link onClick={() => setModalVisible(true)}>Add task icon</Nav.Link>
                         <Nav.Link href="#show-task">Show tasks icon</Nav.Link>
                     </Nav>
 

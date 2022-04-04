@@ -10,8 +10,7 @@ export const SignInPage = () => {
     const [ errors, setErrors] = useState({})
     const [ badCredentials, setBadCredentials ] = useState(false);
 
-    const { setToken } = useContext(GeneralContext);
-    const { setUserName } = useContext(GeneralContext);
+    const { token, setToken, setUserName } = useContext(GeneralContext);
     const navigate = useNavigate();
 
     const setField = (field, value) => {
@@ -56,7 +55,7 @@ export const SignInPage = () => {
             const data = await response.json();
             setUserName(data?.userName);
             setToken(data?.token);
-            navigate("/...")
+            console.log("ura ura", token);
 
         } else {
             setBadCredentials(true);
@@ -67,6 +66,8 @@ export const SignInPage = () => {
             setErrors(newErrors)
         }
     }
+
+    console.log("blabla", token);
 
     return (
         <Container>
