@@ -1,12 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 
-export const GeneralContext = React.createContext({ token: '' });
+export const GeneralContext = React.createContext({ token: '' , userName: ''});
 
 export const GeneralProvider = ({ children }) => {
-  const [token, setToken] = React.useState({ token: '' });
+  const [token, setToken] = useState('');
+  const [userName, setUserName] = useState('');
 
   return (
-    <GeneralContext.Provider value={{ token, setToken }}>
+    <GeneralContext.Provider value={{ token, setToken, userName, setUserName }}>
       {children}
     </GeneralContext.Provider>
   );
