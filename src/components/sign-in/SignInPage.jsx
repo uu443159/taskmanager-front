@@ -55,7 +55,7 @@ export const SignInPage = () => {
             const data = await response.json();
             setUserName(data?.userName);
             setToken(data?.token);
-            console.log("ura ura", token);
+            console.log("the token is ", token);
 
         } else {
             setBadCredentials(true);
@@ -67,50 +67,51 @@ export const SignInPage = () => {
         }
     }
 
-    console.log("blabla", token);
-
     return (
-        <Container>
-        <div className="App d-flex flex-column align-items-center">
+        <Container fluid className="d-flex justify-content-center" style={{height: '100vh'}}>
+        <div className="App d-flex flex-column align-items-center align-self-center">
             <h3>Sign in to Task Manager</h3>
-                <Form onSubmit={handleSubmit} style={{ width: '500px'}}>
-                <Form.Group className="mb-3" controlId="formGroupUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Username"
-                        onChange={e => setField("userName", e.target.value)}
-                        isInvalid={ !!errors.userName}/>
-                        <Form.Control.Feedback type='invalid'>
-                            { errors.userName }
-                        </Form.Control.Feedback>
-                </Form.Group>
+                <div style={{backgroundColor: 'lightgray', padding: "40px"}}>
+                    <Form onSubmit={handleSubmit} style={{ width: '500px'}}>
+                        <Form.Group className="mb-3" controlId="formGroupUsername">
+                            <Form.Label className="d-flex align-self-left">Username</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Username"
+                                onChange={e => setField("userName", e.target.value)}
+                                isInvalid={ !!errors.userName}/>
+                            <Form.Control.Feedback type='invalid'>
+                                { errors.userName }
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        onChange={e => setField("password", e.target.value)}
-                        isInvalid={ !!errors.password}/>
-                    <Form.Control.Feedback type='invalid'>
-                        { errors.password }
-                    </Form.Control.Feedback>
-                </Form.Group>
+                        <Form.Group className="mb-3" controlId="formGroupPassword">
+                            <Form.Label className="d-flex align-self-left">Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                onChange={e => setField("password", e.target.value)}
+                                isInvalid={ !!errors.password}/>
+                            <Form.Control.Feedback type='invalid'>
+                                { errors.password }
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Text hidden={!badCredentials}>
-                        Wrong username or password.
-                    </Form.Text>
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Text hidden={!badCredentials}>
+                                Wrong username or password.
+                            </Form.Text>
+                        </Form.Group>
+                        <br/>
+                        <Button variant="success" type="submit" className="btn btn-lg" style={{width: '100%'}}>
+                            Sign in
+                        </Button>
+                        <p className="forgot-password text-md-start" style={{paddingTop: '20px'}}>
+                            New to Task Manage? <a href="#" onClick={handleSignUp}>Create an account</a>
+                        </p>
+                    </Form>
+                </div>
 
-                <Button variant="primary" type="submit" className="btn btn-lg">
-                    Sign in
-                </Button>
-                    <p className="forgot-password text-md-start">
-                        New to Task Manage? <a href="#" onClick={handleSignUp}>Create an account</a>
-                    </p>
-                </Form>
         </div>
         </Container>
     )

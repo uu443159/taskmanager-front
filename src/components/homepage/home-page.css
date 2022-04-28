@@ -1,0 +1,72 @@
+.logo {
+    width: 72px;
+    height: 72px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.logo-text {
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28pt;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.sign-in-wrapper {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.button-sign-in {
+    text-align: center;
+    width: 180px;
+    height: 60px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+.button-sign-up {
+    text-align: center;
+    width: 180px;
+    height: 60px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20pt;
+    background-color: #25A1E7;
+    color: white;
+}
+
+.moto-wrapper {
+    width: 600px;
+    height: 300px;
+}
+
+.moto-wrapper > p {
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    color: gray;
+    font-size: 22pt;
+    text-align: left;
+}
+
+.moto-wrapper > p:first-child {
+    font-size: 60pt;
+    color: black;
+    font-weight: normal;
+}
+
+

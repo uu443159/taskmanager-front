@@ -1,6 +1,9 @@
 import React from "react";
-import {Container, Navbar, Button} from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import {Container, Navbar, Button, Row, Image, Col} from "react-bootstrap";
+import {useNavigate} from 'react-router-dom';
+import homePageImage from '../../assets/home-page.png';
+import tasksIcon from '../../assets/icon-tasks.png';
+import './home-page.css';
 
 export const HomePage = () => {
 
@@ -15,47 +18,38 @@ export const HomePage = () => {
     }
 
     return (
-        <>
-            <Navbar expand="lg">
-                <Container fluid>
-                    <Navbar.Brand href="/" style={{fontFamily: "Roboto", fontStyle: "normal", fontWeight: 900, fontSize: 30}}>
-                        <img
-                            alt="logo"
-                            src="/images/Utilities-tasks-icon.png"
-                            width="46"
-                            height="38"
-                            className="d-inline-block"
-                        />{' '}
-                        taskManager
-                    </Navbar.Brand>
-
-                    <div>
-                        <Button
-                            className="shadow p-3 mb-5 bg-white rounded"
-                            variant="light"
-                            style={{
-                                alignItems: "center",
-                                width: 180,
-                                height: 60,
-                                textAlign: "center", fontFamily: "Roboto", fontStyle: "normal", fontWeight: 500, fontSize: 30
-                            }}
-                            onClick={handleSignIn}>
-                            Sign In</Button>
-                        <Button
-                            variant="default"
-                            style={{
-                                alignItems: "center",
-                                width: 180,
-                                height: 60,
-                                background: "#25A1E7",
-                                textAlign: "center", fontFamily: "Roboto", fontStyle: "normal", fontWeight: 500, fontSize: 30, color: "#FFFFFF"
-                            }}
-                            onClick={handleSignUp}>Sign Up</Button>
+        <Container fluid style={{paddingTop: 50, paddingLeft: 100, paddingRight: 100}}>
+            <Row>
+                <Col className="logo-wrapper">
+                    <img alt="logo" src={tasksIcon} className="logo"/>
+                    <span className="logo-text">taskManager</span>
+                </Col>
+                <Col className="sign-in-wrapper">
+                    <Button
+                        variant="light"
+                        onClick={handleSignIn}>
+                        Sign In</Button>
+                    <Button
+                        variant="primary"
+                        onClick={handleSignUp}>Sign Up</Button>
+                </Col>
+            </Row>
+            <Row style={{padding: 100}}>
+                <Col style={{display: "flex", alignItems: "flex-start", flexDirection: "column"}}>
+                    <div className="moto-wrapper">
+                        <p>Task Manager</p>
+                        <p>This tool is designed to help you better manage your tasks</p>
                     </div>
-                </Container>
-            </Navbar>
-
-
-        </>
+                    <Button
+                        variant="primary"
+                        size="lg"
+                    onClick={handleSignIn}>
+                        Get Started</Button>
+                </Col>
+                <Col>
+                    <Image src={homePageImage} fluid={true} rounded={true}/>
+                </Col>
+            </Row>
+        </Container>
     );
 }

@@ -10,8 +10,8 @@ import { AddTaskModal} from "./components/modal/AddTaskModal";
 function App() {
   return (
     <div className='App'>
-        <Header />
-        <AddTaskModal />
+        {/*<Header />*/}
+        {/*<AddTaskModal />*/}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/sign-in' element={<SignInPage />} />
