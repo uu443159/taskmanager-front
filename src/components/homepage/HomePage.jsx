@@ -1,55 +1,31 @@
 import React from "react";
-import {Container, Navbar, Button, Row, Image, Col} from "react-bootstrap";
-import {useNavigate} from 'react-router-dom';
-import homePageImage from '../../assets/home-page.png';
-import tasksIcon from '../../assets/icon-tasks.png';
+import {Button, Container, Form, FormControl, FormGroup, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
+import Sidebar from "./Sidebar";
 import './home-page.css';
+import AddTask from "../add-task/AddTask";
 
 export const HomePage = () => {
 
-    const navigate = useNavigate();
-
-    const handleSignIn = () => {
-        navigate("/sign-in");
-    }
-
-    const handleSignUp = () => {
-        navigate("/sign-up");
-    }
-
     return (
-        <Container fluid style={{paddingTop: 50, paddingLeft: 100, paddingRight: 100}}>
-            <Row>
-                <Col className="logo-wrapper">
-                    <img alt="logo" src={tasksIcon} className="logo"/>
-                    <span className="logo-text">taskManager</span>
-                </Col>
-                <Col className="sign-in-wrapper">
-                    <Button
-                        variant="light"
-                        onClick={handleSignIn}>
-                        Sign In</Button>
-                    <Button
-                        variant="primary"
-                        onClick={handleSignUp}>Sign Up</Button>
-                </Col>
-            </Row>
-            <Row style={{padding: 100}}>
-                <Col style={{display: "flex", alignItems: "flex-start", flexDirection: "column"}}>
-                    <div className="moto-wrapper">
-                        <p>Task Manager</p>
-                        <p>This tool is designed to help you better manage your tasks</p>
-                    </div>
-                    <Button
-                        variant="primary"
-                        size="lg"
-                    onClick={handleSignIn}>
-                        Get Started</Button>
-                </Col>
-                <Col>
-                    <Image src={homePageImage} fluid={true} rounded={true}/>
-                </Col>
-            </Row>
+
+        <Container fluid>
+            <Sidebar/>
+            <Container>
+                <Navbar  bg="light" variant="dark" expand="lg" fixed="top">
+                    <Container>
+                        <Nav className="me-auto">
+                            <Form inline="true" className="d-flex flex-row">
+                                <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                                <Button variant="success">Search</Button>
+                            </Form>
+                            <span style={{width: '60vw'}} />
+                           <AddTask />
+                            <span style={{width: '5vw'}} />
+                            <i className="bi bi-list-ul text-black fs-2" />
+                        </Nav>
+                    </Container>
+                </Navbar>
+            </Container>
         </Container>
     );
 }

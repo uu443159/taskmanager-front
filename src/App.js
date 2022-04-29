@@ -1,11 +1,10 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import {HomePage} from "./components/homepage/HomePage";
+import {Route, Routes} from 'react-router-dom';
+import {StartPage} from "./components/startpage/StartPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {SignInPage} from "./components/sign-in/SignInPage";
 import {SignUpPage} from "./components/sign-up/SignUpPage";
-import { Header} from "./components/header/Header";
-import { AddTaskModal} from "./components/modal/AddTaskModal";
+import {HomePage} from "./components/homepage/HomePage";
 
 function App() {
   return (
@@ -13,9 +12,10 @@ function App() {
         {/*<Header />*/}
         {/*<AddTaskModal />*/}
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<StartPage />} />
         <Route path='/sign-in' element={<SignInPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
+        <Route path='/home-page' element={<HomePage />} />
       </Routes>
     </div>
   );
