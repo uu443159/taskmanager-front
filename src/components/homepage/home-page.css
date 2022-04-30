@@ -1,8 +1,6 @@
-.i-circle {
-    background: lightcoral;
-    color: black;
-    padding: 5px 20px;
-    border-radius: 50%;
-    font-size: 35px;
+.greetings {
+    text-align: left;
+    font-weight: bold;
+    font-size: large;
+    align-self: center;
 }
-

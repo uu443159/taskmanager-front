@@ -36,11 +36,8 @@ export const Sidebar = () => {
 
                 <CDBSidebarContent className="sidebar-content">
                     <CDBSidebarMenu>
-                        <NavLink exact="true" to="/start" activeclassname="activeClicked">
+                        <NavLink exact="true" to="/home-page" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="home">HOME PAGE</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact="true" to="/today" activeclassname="activeClicked">
-                            <CDBSidebarMenuItem icon="star">TODAY</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact="true" to="/projects" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="clipboard">PROJECTS</CDBSidebarMenuItem>
