@@ -56,7 +56,8 @@ export const SignInPage = () => {
             const data = await response.json();
             setUserName(data?.userName);
             setToken(data?.token);
-            console.log("the token is ", token);
+
+            navigate('/home-page');
 
         } else {
             setBadCredentials(true);

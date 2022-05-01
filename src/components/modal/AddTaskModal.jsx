@@ -10,8 +10,7 @@ export default function AddTaskModal() {
     const initialFormData = Object.freeze({
         username: context.userName,
         title: "",
-        description: "",
-        project: ""
+        description: ""
     });
 
     const [show, setShow] = useState(false);
@@ -90,11 +89,6 @@ export default function AddTaskModal() {
                             <Form.Control.Feedback type="invalid">
                                 Please provide a task description.
                             </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formProjectId">
-                            <Form.Label>Project</Form.Label>
-                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" onChange={handleChange}
-                                          name="project"/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

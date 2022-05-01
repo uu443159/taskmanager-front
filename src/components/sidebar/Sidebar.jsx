@@ -40,7 +40,7 @@ export const Sidebar = () => {
                             <CDBSidebarMenuItem icon="home">HOME PAGE</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact="true" to="/projects" activeclassname="activeClicked">
-                            <CDBSidebarMenuItem icon="clipboard">PROJECTS</CDBSidebarMenuItem>
+                            <CDBSidebarMenuItem icon="star">FAVOURITES</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact="true" to="/settings" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="cog">

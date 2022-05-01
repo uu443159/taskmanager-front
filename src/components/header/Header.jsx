@@ -10,7 +10,7 @@ export const Header = () => {
         <Navbar bg="light" expand="lg" fixed="top">
             <div>
                 <Nav style={{marginLeft: '5vw'}}>
-                    <span style={{width: '70vw'}}/>
+                    <span style={{width: '85vw'}}/>
                     <AddTaskModal/>
                     <span style={{width: '5vw'}}/>
                     <div className="greetings">

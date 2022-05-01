@@ -41,7 +41,7 @@ export const SignUpPage = () => {
         if (response.ok) {
             const data = await response.json();
             setToken(data?.token);
-            navigate("/...")
+            navigate("/sign-in")
 
         } else {
             setBadCredentials(true);
