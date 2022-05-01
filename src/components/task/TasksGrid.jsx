@@ -1,24 +1,28 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Container} from "react-bootstrap";
-import './task-card.css';
+import './task.css';
 import {GeneralContext} from "../../context/GeneralContext";
+import {TaskCard} from "./TaskCard";
 
-export const TaskCards = () => {
+export const TasksGrid = () => {
 
     const context = useContext(GeneralContext);
 
     const [cards, setCards] = useState();
 
-    useEffect( () => {
+    useEffect(() => {
 
         const fetchData = async () => {
             const requestOptions = {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json', 'Authorization': context.token}
+                headers: {'Content-Type': 'application/json', 'Authorization': context.token}
             };
+
             const response = await fetch('http://localhost:8080/api/v1/task/all', requestOptions);
-            const data = await response.json();
-            setCards(data);
+
+            if (response.ok) {
+                const data = await response.json();
+                setCards(data);
+            }
         };
 
         fetchData()
@@ -29,19 +33,13 @@ export const TaskCards = () => {
         return <>Still loading...</>;
     }
 
+
     return (
         <div className="content">
             {
-                cards.map((el) => {
+                cards.map((card) => {
                     return (
-                        <div className="card" style={{width: '18rem'}} key={el}>
-                            <div className="card-header">
-                                {el.taskTitle}
-                            </div>
-                            <div className="card-body">
-                                {el.taskDescription}
-                            </div>
-                        </div>
+                        <TaskCard el={card}/>
                     );
                 })
             }
@@ -49,4 +47,4 @@ export const TaskCards = () => {
     );
 };
 
-export default TaskCards;
+export default TasksGrid;

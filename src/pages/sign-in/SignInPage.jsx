@@ -5,12 +5,12 @@ import {useNavigate} from "react-router-dom";
 
 export const SignInPage = () => {
 
-    const [ form, setForm] = useState({})
-    const { userName, password } = form
-    const [ errors, setErrors] = useState({})
-    const [ badCredentials, setBadCredentials ] = useState(false);
+    const [form, setForm] = useState({})
+    const {userName, password} = form
+    const [errors, setErrors] = useState({})
+    const [badCredentials, setBadCredentials] = useState(false);
 
-    const { token, setToken, setUserName } = useContext(GeneralContext);
+    const {token, setToken, setUserName} = useContext(GeneralContext);
     const navigate = useNavigate();
 
     const setField = (field, value) => {
@@ -18,7 +18,7 @@ export const SignInPage = () => {
             ...form,
             [field]: value
         })
-        if ( !!errors[field] ) setErrors({
+        if (!!errors[field]) setErrors({
             ...errors,
             [field]: null
         })
@@ -27,8 +27,8 @@ export const SignInPage = () => {
     const findFormErrors = () => {
         const newErrors = {}
 
-        if ( !userName || userName === '' ) newErrors.userName = 'Enter an user name'
-        if ( !password || password === '' ) newErrors.pasword = 'Enter a password'
+        if (!userName || userName === '') newErrors.userName = 'Enter an user name'
+        if (!password || password === '') newErrors.pasword = 'Enter a password'
 
         return newErrors
     }
@@ -43,10 +43,11 @@ export const SignInPage = () => {
 
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 login: userName,
-                password: password})
+                password: password
+            })
         };
         const response = await fetch("http://localhost:8080/api/v1/auth", requestOptions);
 
@@ -62,26 +63,26 @@ export const SignInPage = () => {
         }
 
         const newErrors = findFormErrors()
-        if ( Object.keys(newErrors).length > 0 ) {
+        if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
         }
     }
 
     return (
         <Container fluid className="d-flex justify-content-center" style={{height: '100vh'}}>
-        <div className="App d-flex flex-column align-items-center align-self-center">
-            <h3>Sign in to Task Manager</h3>
+            <div className="App d-flex flex-column align-items-center align-self-center">
+                <h3>Sign in to Task Manager</h3>
                 <div style={{backgroundColor: 'lightgray', padding: "40px"}}>
-                    <Form onSubmit={handleSubmit} style={{ width: '500px'}}>
+                    <Form onSubmit={handleSubmit} style={{width: '500px'}}>
                         <Form.Group className="mb-3" controlId="formGroupUsername">
                             <Form.Label className="d-flex align-self-left">Username</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Username"
                                 onChange={e => setField("userName", e.target.value)}
-                                isInvalid={ !!errors.userName}/>
+                                isInvalid={!!errors.userName}/>
                             <Form.Control.Feedback type='invalid'>
-                                { errors.userName }
+                                {errors.userName}
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -91,9 +92,9 @@ export const SignInPage = () => {
                                 type="password"
                                 placeholder="Password"
                                 onChange={e => setField("password", e.target.value)}
-                                isInvalid={ !!errors.password}/>
+                                isInvalid={!!errors.password}/>
                             <Form.Control.Feedback type='invalid'>
-                                { errors.password }
+                                {errors.password}
                             </Form.Control.Feedback>
                         </Form.Group>
 
@@ -112,7 +113,7 @@ export const SignInPage = () => {
                     </Form>
                 </div>
 
-        </div>
+            </div>
         </Container>
     )
 }

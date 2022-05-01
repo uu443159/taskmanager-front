@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Navbar, Button, Row, Image, Col} from "react-bootstrap";
+import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import {useNavigate} from 'react-router-dom';
 import homePageImage from '../../assets/home-page.png';
 import tasksIcon from '../../assets/icon-tasks.png';
@@ -43,7 +43,7 @@ export const StartPage = () => {
                     <Button
                         variant="primary"
                         size="lg"
-                    onClick={handleSignIn}>
+                        onClick={handleSignIn}>
                         Get Started</Button>
                 </Col>
                 <Col>

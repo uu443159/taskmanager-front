@@ -1,109 +1,28 @@
 import React, {useContext} from 'react';
-import { Nav, Navbar, Form, FormControl, Container, Button } from 'react-bootstrap';
+import {Button, Form, Nav, Navbar} from 'react-bootstrap';
+import AddTaskModal from "../modal/AddTaskModal";
 import {GeneralContext} from "../../context/GeneralContext";
-import {useNavigate} from "react-router-dom";
 
 export const Header = () => {
-
-    const { token, setToken, setModalVisible } = useContext(GeneralContext);
-    const navigate = useNavigate();
-
-    const handleSignIn = () => {
-        navigate("/sign-in");
-    }
-
-    const handleSignUp = () => {
-        navigate("/sign-up");
-    }
-
-    const handleSignOut = () => {
-        setToken("");
-        navigate("/");
-    }
-
-
+    const context = useContext(GeneralContext);
 
     return (
-
-        <Navbar expand="lg">
-            <Container fluid>
-                <Navbar.Brand href="/">
-                    <img
-                        alt="logo"
-                        src="/images/Utilities-tasks-icon.png"
-                        width="46"
-                        height="38"
-                        className="d-inline-block"
-                    />{' '}
-                    taskManager
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="navbarScroll">
-                    <Form className="d-flex">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
+        <Navbar bg="light" expand="lg" fixed="top">
+            <div>
+                <Nav style={{marginLeft: '5vw'}}>
+                    <span style={{width: '65vw'}}/>
+                    <Form inline="true" className="d-flex flex-row">
+                        <Form.Control type="text" placeholder="Search" className="mr-lg-2"/>
+                        <Button variant="success">Search</Button>
                     </Form>
-                    <Nav
-                        className="me-auto my-2 my-lg-0"
-                        style={{maxHeight: '100px'}}
-                        navbarScroll
-                    >
-                        <Nav.Link onClick={() => setModalVisible(true)}>Add task icon</Nav.Link>
-                        <Nav.Link href="#show-task">Show tasks icon</Nav.Link>
-                    </Nav>
-
-                </Navbar.Collapse>
-
-                <Button
-                    // className="shadow p-3 mb-5 bg-white rounded"
-                    variant="light"
-                    hidden={token}
-                    style={{
-                        alignItems: "center",
-                        width: 180,
-                        height: 60,
-                        textAlign: "center", fontFamily: "Roboto", fontStyle: "normal", fontWeight: 500, fontSize: 30
-                    }}
-                    onClick={handleSignIn}>
-                    Sign In</Button>
-                <Button
-                    variant="default"
-                    hidden={token}
-                    style={{
-                        alignItems: "center",
-                        width: 180,
-                        height: 60,
-                        background: "#25A1E7",
-                        textAlign: "center",
-                        fontFamily: "Roboto",
-                        fontStyle: "normal",
-                        fontWeight: 500,
-                        fontSize: 30,
-                        color: "#FFFFFF"
-                    }}
-                    onClick={handleSignUp}>Sign Up</Button>
-                <Button
-                    variant="default"
-                    hidden={!token}
-                    style={{
-                        alignItems: "center",
-                        width: 180,
-                        height: 60,
-                        background: "#25A1E7",
-                        textAlign: "center",
-                        fontFamily: "Roboto",
-                        fontStyle: "normal",
-                        fontWeight: 500,
-                        fontSize: 30,
-                        color: "#FFFFFF"
-                    }}
-                    onClick={handleSignOut}>Sign out</Button>
-            </Container>
+                    <span style={{width: '5vw'}}/>
+                    <AddTaskModal/>
+                    <span style={{width: '5vw'}}/>
+                    <div className="greetings">
+                        Hello {context.userName}!
+                    </div>
+                </Nav>
+            </div>
         </Navbar>
-    )
+    );
 }

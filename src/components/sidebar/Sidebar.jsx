@@ -13,7 +13,7 @@ import {GeneralContext} from "../../context/GeneralContext";
 
 export const Sidebar = () => {
 
-    const { setToken } = useContext(GeneralContext);
+    const {setToken} = useContext(GeneralContext);
     const navigate = useNavigate();
 
     const handleSignOut = () => {
@@ -22,13 +22,13 @@ export const Sidebar = () => {
     }
 
     return (
-        <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial', paddingTop: '5vh'}}>
+        <div style={{display: 'flex', height: '100vh', overflow: 'scroll initial', paddingTop: '5vh'}}>
             <CDBSidebar textColor="black" backgroundColor="lightgray">
-                <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />}>
+                <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"/>}>
                     <a
                         href="/"
                         className="text-decoration-none"
-                        style={{ color: 'inherit' }}
+                        style={{color: 'inherit'}}
                     >
                         taskManager
                     </a>
@@ -51,7 +51,7 @@ export const Sidebar = () => {
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
 
-                <CDBSidebarFooter style={{ textAlign: 'center' }}>
+                <CDBSidebarFooter style={{textAlign: 'center'}}>
                     <Button onClick={handleSignOut} variant="danger">Sign out</Button>
                 </CDBSidebarFooter>
             </CDBSidebar>

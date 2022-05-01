@@ -1,0 +1,31 @@
+.content {
+    position: fixed;
+    top: 5vh;
+    left: 15vw;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1vh;
+    flex-wrap: wrap;
+}
+
+.card {
+    align-self: flex-start;
+    margin: 20px;
+}
+
+.icon-delete {
+    float: right;
+    cursor: pointer;
+}
+
+.icon-star {
+    float: left;
+    cursor: pointer;
+}
+
+.icon-star-enabled {
+    color: #DBA800;
+    display: none;
+}

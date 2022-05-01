@@ -1,78 +1,109 @@
-import React, {useContext, useState} from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Modal, Button, Form} from 'react-bootstrap';
+import React, {useContext, useRef, useState} from "react";
+import {Button, Form, Modal} from 'react-bootstrap';
 import {GeneralContext} from "../../context/GeneralContext";
 
-export const AddTaskModal = () => {
-    const [ title, setTitle ] = useState("");
-    const [ description, setDescription ] = useState("");
-    const [ badCredentials, setBadCredentials ] = useState(false);
-    const {userName, token, modalVisible, setModalVisible} = useContext(GeneralContext);
 
-    const handleSubmit = async (e) => {
+export default function AddTaskModal() {
 
-        console.log('button clicked')
-        console.log(token)
-        console.log(userName)
+    const context = useContext(GeneralContext);
 
-        e.preventDefault();
+    const initialFormData = Object.freeze({
+        username: context.userName,
+        title: "",
+        description: "",
+        project: ""
+    });
+
+    const [show, setShow] = useState(false);
+    const [validated, setValidated] = useState(false);
+    const [formData, updateFormData] = React.useState(initialFormData);
+    const formRef = useRef(null);
+
+    const handleClose = () => {
+        setShow(false);
+
+        updateFormData({
+            ...initialFormData
+        });
+
+        setValidated(false);
+    }
+    const handleShow = () => {
+        setShow(true);
+    }
+
+    const handleChange = (e) => {
+        updateFormData({
+            ...formData,
+            [e.target.name]: e.target.value.trim()
+        });
+    };
+
+    const handleSubmit = async (event) => {
+        const form = event.currentTarget;
+
+        event.preventDefault();
+
+        if (form.checkValidity() === false) {
+            event.stopPropagation();
+        }
 
         const requestOptions = {
             method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Authorization': token},
-            body: JSON.stringify({
-                userName: userName,
-                title: title,
-                description: description
-            })
-        }
+            headers: {'Content-Type': 'application/json', 'Authorization': context.token},
+            body: JSON.stringify(formData)
+        };
 
         const response = await fetch("http://localhost:8080/api/v1/task/save", requestOptions);
 
         if (response.ok) {
-            setModalVisible(false)
-
-        } else {
-            console.log('error')
+            handleClose();
+            window.location.reload(false);
         }
+
+        setValidated(true);
     };
 
     return (
-        <Modal
-            show={modalVisible}
-            onHide={() => setModalVisible(false)}
-            backdrop="static"
-            keyboard={false}
-        >
-            <Modal.Header closeButton>
-                <Modal.Title>Add new task</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmit} >
-                    <Form.Group controlId="formGroupTitle">
-                        <Form.Label>Task title</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}/>
-                    </Form.Group>
+        <>
+            <i className="bi bi-journal-plus text-black fs-2" style={{cursor: 'pointer'}} onClick={handleShow}/>
 
-                    <Form.Group controlId="formGroupDescription">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}/>
-                    </Form.Group>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>New Task</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form itemRef={formRef} noValidate validated={validated} onSubmit={handleSubmit} id="taskForm">
+                        <Form.Group className="mb-3" controlId="formTaskTitle">
+                            <Form.Label>Task title</Form.Label>
+                            <Form.Control type="text" placeholder="Enter task title" required onChange={handleChange}
+                                          name="title"/>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a task title.
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-                    <Button variant="secondary" onClick={() => setModalVisible(false)}>
-                        Close
+                        <Form.Group className="mb-3" controlId="formTaskDescription">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control type="text" placeholder="Add task description" required
+                                          onChange={handleChange} name="description"/>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a task description.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formProjectId">
+                            <Form.Label>Project</Form.Label>
+                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" onChange={handleChange}
+                                          name="project"/>
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="success" type="submit" form="taskForm">
+                        Submit
                     </Button>
-                    <Button variant="primary" type="submit">Add</Button>
-                </Form>
-            </Modal.Body>
-        </Modal>
+                </Modal.Footer>
+            </Modal>
+        </>
     );
 }
