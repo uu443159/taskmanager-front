@@ -14,7 +14,7 @@ export const SettingsPage = () => {
         <Container fluid>
             <Header/>
             <Sidebar/>
-            <div className="gear-icon-wrapper">
+            <div className="position-fixed-center">
                 <i className="bi bi-gear-wide-connected fa-3x"/>
                 <p>Settings page</p>
             </div>

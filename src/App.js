@@ -6,6 +6,7 @@ import {SignInPage} from "./pages/sign-in/SignInPage";
 import {SignUpPage} from "./pages/sign-up/SignUpPage";
 import {HomePage} from "./pages/homepage/HomePage";
 import {SettingsPage} from "./pages/settings/SettingsPage";
+import FavouritesPage from "./pages/favourites/FavouritesPage";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path='/sign-up' element={<SignUpPage/>}/>
                 <Route path='/home-page' element={<HomePage/>}/>
                 <Route path='/settings' element={<SettingsPage/>}/>
+                <Route path='/favourites' element={<FavouritesPage/>}/>
             </Routes>
         </div>
     );

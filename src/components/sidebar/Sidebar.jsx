@@ -39,7 +39,7 @@ export const Sidebar = () => {
                         <NavLink exact="true" to="/home-page" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="home">HOME PAGE</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact="true" to="/projects" activeclassname="activeClicked">
+                        <NavLink exact="true" to="/favourites" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="star">FAVOURITES</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact="true" to="/settings" activeclassname="activeClicked">
