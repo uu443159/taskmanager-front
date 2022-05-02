@@ -15,7 +15,7 @@ export default function AddTaskModal() {
 
     const [show, setShow] = useState(false);
     const [validated, setValidated] = useState(false);
-    const [formData, updateFormData] = React.useState(initialFormData);
+    const [formData, updateFormData] = useState(initialFormData);
     const formRef = useRef(null);
 
     const handleClose = () => {

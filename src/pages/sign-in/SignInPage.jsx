@@ -11,6 +11,7 @@ export const SignInPage = () => {
     const [badCredentials, setBadCredentials] = useState(false);
 
     const {token, setToken, setUserName} = useContext(GeneralContext);
+
     const navigate = useNavigate();
 
     const setField = (field, value) => {
