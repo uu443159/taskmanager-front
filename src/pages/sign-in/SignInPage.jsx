@@ -105,7 +105,7 @@ export const SignInPage = () => {
                             </Form.Text>
                         </Form.Group>
                         <br/>
-                        <Button variant="success" type="submit" className="btn btn-lg" style={{width: '100%'}}>
+                        <Button variant="primary" type="submit" className="btn btn-lg" style={{width: '100%'}}>
                             Sign in
                         </Button>
                         <p className="forgot-password text-md-start" style={{paddingTop: '20px'}}>
